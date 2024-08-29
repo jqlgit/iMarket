@@ -20,7 +20,6 @@
 		52A038ED2C7D8E890069B4A6 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A038EC2C7D8E890069B4A6 /* ProductViewModel.swift */; };
 		52A038EF2C7D8E970069B4A6 /* MyItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A038EE2C7D8E970069B4A6 /* MyItemsViewModel.swift */; };
 		52A038F12C7E98760069B4A6 /* ProductsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A038F02C7E98760069B4A6 /* ProductsService.swift */; };
-		52A038F32C7E9A340069B4A6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A038F22C7E9A340069B4A6 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		52A038EC2C7D8E890069B4A6 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		52A038EE2C7D8E970069B4A6 /* MyItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsViewModel.swift; sourceTree = "<group>"; };
 		52A038F02C7E98760069B4A6 /* ProductsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsService.swift; sourceTree = "<group>"; };
-		52A038F22C7E9A340069B4A6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +98,6 @@
 				52A038E12C7D8C1D0069B4A6 /* MyItemsView.swift */,
 				52A038E32C7D8C2F0069B4A6 /* CartView.swift */,
 				52A038E52C7D8C3F0069B4A6 /* ProductDetailsView.swift */,
-				52A038F22C7E9A340069B4A6 /* SearchBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,7 +203,6 @@
 				52A038EB2C7D8E760069B4A6 /* CartItem.swift in Sources */,
 				52A038EF2C7D8E970069B4A6 /* MyItemsViewModel.swift in Sources */,
 				52A038CE2C7D89B80069B4A6 /* iMarketApp.swift in Sources */,
-				52A038F32C7E9A340069B4A6 /* SearchBar.swift in Sources */,
 				52A038E02C7D8C060069B4A6 /* ProductsView.swift in Sources */,
 				52A038ED2C7D8E890069B4A6 /* ProductViewModel.swift in Sources */,
 				52A038E22C7D8C1D0069B4A6 /* MyItemsView.swift in Sources */,
