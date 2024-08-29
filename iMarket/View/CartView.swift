@@ -16,8 +16,8 @@ struct CartView: View {
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 2) {
-                // Dropdown under the navigation title
+            VStack(alignment: .leading, spacing: 16) {
+                // Dropdown for pick up or delivery
                 HStack {
                     Menu {
                         ForEach(options, id: \.self) { option in
@@ -36,7 +36,7 @@ struct CartView: View {
                         }
                     }
                     
-                    Text("from")
+                    Text(selectedOption == "Pick up" ? "from" : "to")
                         .foregroundColor(.gray)
                     
                     Text("Cupertino")
@@ -44,42 +44,63 @@ struct CartView: View {
                         .foregroundColor(.white)
                 }
                 .padding(.leading, 16)
-                List(viewModel.cart) { item in
-                    HStack {
-                        AsyncImage(url: URL(string: item.product.thumbnail)) { image in
-                            image.resizable()
-                        } placeholder: {
-                            Color.gray
-                        }
-                        .frame(width: 50, height: 50)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        
-                        VStack(alignment: .leading) {
-                            Text(item.product.title)
-                                .font(.headline)
-                                .lineLimit(1)
-                        }
-                        
-                        Spacer()
-                        
-                        Text("$\(item.product.price, specifier: "%.2f")")
-                            .font(.subheadline)
-                            .fontWeight(.bold)
+
+                if viewModel.cart.isEmpty {
+                    Spacer()
+
+                    VStack {
+                        Image(systemName: "cart.badge.plus")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .foregroundColor(.gray)
+                        Text("Add items to cart")
+                            .font(.headline)
+                            .foregroundColor(.gray)
                     }
-                    .padding(.vertical, 10)
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom, 50)
+                } else {
+                    List(viewModel.cart) { item in
+                        HStack {
+                            AsyncImage(url: URL(string: item.product.thumbnail)) { image in
+                                image.resizable()
+                            } placeholder: {
+                                Color.gray
+                            }
+                            .frame(width: 50, height: 50)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            
+                            VStack(alignment: .leading) {
+                                Text(item.product.title)
+                                    .font(.headline)
+                                    .fontWeight(.regular)
+                                    .lineLimit(1)
+                            }
+                            
+                            Spacer()
+                            
+                            Text("$\(item.product.price, specifier: "%.2f")")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                        }
+                        .padding(.vertical, 10)
+                    }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle()) // Makes the list look flat
                 
                 // Summary Section
                 VStack {
                     HStack {
-                        Text("$\(viewModel.cartTotal, specifier: "%.2f") total")
-                            .font(.headline)
+                        VStack {
+                            Text("$\(viewModel.cartTotal, specifier: "%.2f") total")
+                                .font(.headline)
+                            Text("\(viewModel.cart.count) item(s)")
+                                .font(.subheadline)
+                                .padding(.trailing, 22)
+                        }
                         
                         Spacer()
-                        
-                        Text("\(viewModel.cart.count) items")
-                            .font(.subheadline)
                         
                         Button(action: {
                             withAnimation {
@@ -97,7 +118,7 @@ struct CartView: View {
 
                     if isExpanded {
                         VStack(alignment: .leading) {
-                            // Optional details like taxes, discounts, etc.
+                            // Extra information
                             Text("Subtotal: $\(viewModel.cartSubtotal, specifier: "%.2f")")
                             Text("Tax: $\(viewModel.tax, specifier: "%.2f")")
                         }
@@ -106,10 +127,10 @@ struct CartView: View {
                     }
                 }
                 .padding(.horizontal)
+                .padding(.bottom, 100)
 
                 // Checkout Button
                 Button(action: {
-                    // Checkout action
                 }) {
                     Text("Check out")
                         .font(.headline)
@@ -120,9 +141,9 @@ struct CartView: View {
                         .cornerRadius(40)
                         .padding(.horizontal)
                 }
-                .padding(.bottom) // Adds space at the bottom of the screen
+                .padding(.bottom, 20)
             }
-            .navigationTitle("Cart") // Use the built-in navigation title
+            .navigationTitle("Cart")
         }
     }
 }
@@ -131,4 +152,3 @@ struct CartView: View {
     CartView()
         .environmentObject(ProductViewModel())
 }
-

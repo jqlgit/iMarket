@@ -14,7 +14,7 @@ struct ContentView: View {
         TabView {
             ProductsView()
                 .tabItem {
-                    Label("Products", systemImage: "list.bullet")
+                    Label("Products", systemImage: "carrot.fill")
                 }
                 .environmentObject(viewModel)
 
@@ -28,6 +28,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Cart", systemImage: "cart")
                 }
+                .badge(viewModel.cart.count)
                 .environmentObject(viewModel)
         }
     }

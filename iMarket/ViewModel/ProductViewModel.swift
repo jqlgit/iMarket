@@ -9,33 +9,30 @@ import SwiftUI
 
 class ProductViewModel: ObservableObject {
     @Published var products: [Product] = []
-    @Published var filteredProducts: [Product] = [] // Filtered products for search results
+    @Published var filteredProducts: [Product] = []
     @Published var cart: [CartItem] = []
-    @Published var favorites: [Product] = [] // Array to store favorited products
+    @Published var favorites: [Product] = []
     
-    var cartTotal: Double {
+    init() {
+            print("ProductViewModel initialized")
+    }
+    
+    var cartSubtotal: Double {
         return cart.reduce(0) { total, cartItem in
             total + cartItem.product.price
         }
     }
 
-    // Optional: Computed properties for subtotal, shipping, and tax
-    var cartSubtotal: Double {
-        return cartTotal // This might be different in a real app
-    }
-
-    var shippingCost: Double {
-        return 5.99 // Example flat shipping rate
-    }
-
+    // Calculate the tax based on the subtotal
     var tax: Double {
-        return cartTotal * 0.08 // Example 8% sales tax
+        return cartSubtotal * 0.08 // 8% sales tax
+    }
+
+    // Calculate the total including tax
+    var cartTotal: Double {
+        return cartSubtotal + tax
     }
     
-    init() {
-            print("ProductViewModel initialized")
-        }
-
     func fetchProducts() {
         ProductService.shared.fetchProducts { [weak self] result in
             DispatchQueue.main.async {
@@ -49,7 +46,7 @@ class ProductViewModel: ObservableObject {
             }
         }
     }
-
+    
     func searchProducts(query: String) {
         if query.isEmpty {
             filteredProducts = products // Show all products if the query is empty

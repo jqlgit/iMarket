@@ -8,6 +8,7 @@
 import Foundation
 
 class MyItemsViewModel: ObservableObject {
+    /*
     @Published var cartItems: [CartItem] = []
 
     func addToCart(product: Product) {
@@ -23,5 +24,5 @@ class MyItemsViewModel: ObservableObject {
         if let index = cartItems.firstIndex(where: { $0.id == cartItem.id }) {
             cartItems.remove(at: index)
         }
-    }
+    }*/
 }

@@ -19,10 +19,7 @@ struct MyItemsView: View {
                     favoritesListView
                 }
             }
-            .navigationTitle("My Items") // Ensure this is applied directly in the NavigationView
-        }
-        .onAppear {
-            print("Favorites in MyItemsView: \(viewModel.favorites.map { $0.title })")
+            .navigationTitle("My Items")
         }
     }
 
@@ -53,7 +50,6 @@ struct MyItemsView: View {
     private var favoritesListView: some View {
         List(viewModel.favorites) { product in
             HStack(alignment: .top, spacing: 15) {
-                // Product Image
                 AsyncImage(url: URL(string: product.thumbnail)) { image in
                     image.resizable()
                 } placeholder: {
@@ -63,17 +59,17 @@ struct MyItemsView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    // Product Title and Price
+                    // Product Title, Price, and Category
                     Text(product.title)
                         .font(.headline)
                         .lineLimit(1)
                     
                     Text("$\(product.price, specifier: "%.2f")")
-                        .font(.subheadline)
+                        .font(.headline)
                         .fontWeight(.bold)
                     
-                    // Product Category
                     Text(product.category.capitalized)
+                        .frame(width: 60, height: 22)
                         .font(.caption)
                         .padding(.vertical, 2)
                         .padding(.horizontal, 8)
@@ -95,21 +91,21 @@ struct MyItemsView: View {
                                 .cornerRadius(20)
                         }
                         
-                        Spacer() // Push the heart button to the right
+                        Spacer()
                         
-                        // Heart Button for unfavoriting
                         Button(action: {
                             viewModel.toggleFavorite(product: product)
                         }) {
                             Image(systemName: "heart.fill")
                                 .foregroundColor(viewModel.isFavorite(product: product) ? .white : .white)
                                 .frame(width: 36, height: 36)
-                                .background(Circle().fill(Color.gray))
+                                .background(Circle().fill(Color(red: 58/255, green: 58/255, blue: 60/255)))
+
                         }
                     }
                 }
                 
-                Spacer() // Push content to the left
+                Spacer()
             }
             .padding(.vertical, 10)
         }
