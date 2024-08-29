@@ -14,12 +14,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Products", systemImage: "carrot.fill")
                 }
-
             MyItemsView()
                 .tabItem {
                     Label("My Items", systemImage: "heart")
                 }
-
             CartView()
                 .tabItem {
                     Label("Cart", systemImage: "cart")

@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
+
     var body: some View {
-        Text("Product Details VIEW")
+        Text("Product detail")
     }
 }
+
+
 
 #Preview {
     ProductDetailsView()
